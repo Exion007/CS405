@@ -1,0 +1,49 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="assignment1.css">
+</head>
+
+<body>
+    <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" class="viewboxcontainer">
+        <text x="400" y="30" text-align="center" text-anchor="middle" class="chart-title">Deaths by Age Group</text>
+        <text x="-125" y="50" text-anchor="middle" class="y-label">Number of Deaths</text>
+    </svg>
+
+    <script>
+        const values = [373041, 391091, 405528, 422964, 426857, 426785, 436624, 509048, 566485, 504839]
+        const years = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+
+        const svg = document.querySelector('.viewboxcontainer');
+        const scale = 800 / 566485
+        
+        values.forEach((value, index) => {
+            const bar = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+            bar.setAttribute('x', 80 * index);
+            bar.setAttribute('y', 900 - value * scale);
+            bar.setAttribute('width', 50);
+            bar.setAttribute('height', value * scale);
+            bar.setAttribute('class', 'bar');
+            bar.setAttribute('id', `bar${index + 1}`);
+            svg.appendChild(bar);
+        
+            
+            const valueText = document.createElementNS("http://www.w3.org/2000/svg", 'text');
+            valueText.setAttribute('x', 80 * index + 32);
+            valueText.setAttribute('y', 500 - 50);
+            valueText.setAttribute('text-anchor', 'middle');
+            valueText.setAttribute('class', 'bar-value');
+            valueText.setAttribute('transform', `rotate(-90, ${80 * index + 32}, ${500 - 50})`);
+            valueText.textContent = value.toLocaleString();
+            svg.appendChild(valueText);
+
+            
+            const label = document.createElementNS("http://www.w3.org/2000/svg", 'text');
+            label.setAttribute('x', 80 * index + 5); // Adjust x position for centering
+            label.setAttribute('y', 880 - value * scale); // Adjust y position to be below the bars
+            label.setAttribute('class', 'bar-label');
+            label.textContent = years[index]; // Set the label text
+            svg.appendChild(label);
+
+        });
+
+    </script>
+</body>
