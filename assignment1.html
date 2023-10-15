@@ -3,47 +3,91 @@
 </head>
 
 <body>
-    <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" class="viewboxcontainer">
+
+    <svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" class="viewboxcontainer">
         <text x="400" y="30" text-align="center" text-anchor="middle" class="chart-title">Deaths by Age Group</text>
-        <text x="-125" y="50" text-anchor="middle" class="y-label">Number of Deaths</text>
+        <text x="-50" y="50" text-anchor="middle" class="y-label">Number of Deaths</text>
+        <text x="915" y="468" text-anchor="middle" class="y-label">Years</text>
+
+        <rect x="900" y="60" width="20" height="20" style="fill:rgb(49, 115, 180); stroke:black; stroke-width:2;"/>
+        <text x="985" y="77" text-anchor="middle" class="y-label">No. Deaths</text>
+        
+        <line x1="-62" y1="462" x2="875" y2="462" style="stroke: black; stroke-width:4"/> <!--- X axis line--->
+        <line x1="-60" y1="462" x2="-60" y2="60" style="stroke: black; stroke-width:4"/>  <!--- Y axis line--->
     </svg>
 
     <script>
         const values = [373041, 391091, 405528, 422964, 426857, 426785, 436624, 509048, 566485, 504839]
-        const years = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+        const years  = [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022]
+        const yTicks = [600000, 500000, 400000, 300000, 200000, 100000]
 
         const svg = document.querySelector('.viewboxcontainer');
-        const scale = 800 / 566485
+        const scale = 450 / 566485  * 0.8 // Setting the scale to adjust the bar heights to be displayed
         
         values.forEach((value, index) => {
+
+            //Creating bars
             const bar = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
-            bar.setAttribute('x', 80 * index);
-            bar.setAttribute('y', 900 - value * scale);
+            bar.setAttribute('x', 85 * index);
+            bar.setAttribute('y', 460 - value * scale);
             bar.setAttribute('width', 50);
-            bar.setAttribute('height', value * scale);
+            bar.setAttribute('height',  value * scale);
             bar.setAttribute('class', 'bar');
             bar.setAttribute('id', `bar${index + 1}`);
             svg.appendChild(bar);
         
             
+            // Creating the values on the bars and rotating them
             const valueText = document.createElementNS("http://www.w3.org/2000/svg", 'text');
-            valueText.setAttribute('x', 80 * index + 32);
-            valueText.setAttribute('y', 500 - 50);
+            valueText.setAttribute('x', 85 * index);
+            valueText.setAttribute('y', 432);
             valueText.setAttribute('text-anchor', 'middle');
             valueText.setAttribute('class', 'bar-value');
-            valueText.setAttribute('transform', `rotate(-90, ${80 * index + 32}, ${500 - 50})`);
+            valueText.setAttribute('transform', `rotate(-90, ${85 * index}, ${400})`);
             valueText.textContent = value.toLocaleString();
             svg.appendChild(valueText);
 
             
+            // Creating the year labels on top of the bars
             const label = document.createElementNS("http://www.w3.org/2000/svg", 'text');
-            label.setAttribute('x', 80 * index + 5); // Adjust x position for centering
-            label.setAttribute('y', 880 - value * scale); // Adjust y position to be below the bars
+            label.setAttribute('x', 85 * index + 5);
+            label.setAttribute('y', 485);
             label.setAttribute('class', 'bar-label');
-            label.textContent = years[index]; // Set the label text
+            label.textContent = years[index];
             svg.appendChild(label);
 
+
+            // Creating X axis ticks
+            const yearLines = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+            yearLines.setAttribute('x1', 85 * index + 25);
+            yearLines.setAttribute('y1', 462);
+            yearLines.setAttribute('x2', 85 * index + 25);
+            yearLines.setAttribute('y2', 470);
+            yearLines.setAttribute('style', "stroke: black; stroke-width:4");
+            svg.appendChild(yearLines);
+        });
+
+
+        yTicks.forEach((value, index) => {
+            
+            const yTick = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+            yTick.setAttribute('x1', -70);
+            yTick.setAttribute('y1', 460 - value * scale);
+            yTick.setAttribute('x2', -50);
+            yTick.setAttribute('y2', 460 - value * scale);
+            yTick.setAttribute('style', "stroke: black; stroke-width:4");
+            svg.appendChild(yTick);
+
+
+            const label = document.createElementNS("http://www.w3.org/2000/svg", 'text');
+            label.setAttribute('x', -150);
+            label.setAttribute('y', 466 - value * scale);
+            label.setAttribute('font-size', '20px')
+            label.setAttribute('font-family', 'Verdana, Geneva, Tahoma, sans-serif')
+            label.textContent = yTicks[index];
+            svg.appendChild(label);
         });
 
     </script>
+
 </body>

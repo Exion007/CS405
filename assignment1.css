@@ -1,7 +1,7 @@
 .viewboxcontainer {
-    border: 10px blueviolet solid;
+    border: 10px rgb(255, 0, 0) solid;
     background-color: white;
-    width: 2500;
+    width: 2500;  /*Setting window size*/
     height: 1000;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .y-label {
-    font-size: 16px;
+    font-size: 20px;
     fill: black;
     font-family:Verdana, Geneva, Tahoma, sans-serif
 }
