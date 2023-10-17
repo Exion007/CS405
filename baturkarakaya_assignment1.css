@@ -1,0 +1,79 @@
+.viewboxcontainer {
+    border: 10px rgb(255, 0, 0) solid;
+    background-color: white;
+    width: 2500;
+    height: 1000;
+}
+
+.title {
+    font-size: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    fill: black;
+    text-align: center;
+    text-anchor: middle;
+}
+
+.x-axis {
+    stroke: black;
+    stroke-width: 4;
+}
+
+.y-axis {
+    stroke: black;
+    stroke-width: 4;
+}
+
+.x-label {
+    font-size: 20px;
+    fill: black;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.y-label {
+    font-size: 20px;
+    fill: black;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.x-tick {
+    stroke: black;
+    stroke-width: 2;
+}
+
+.y-tick {
+    stroke: black;
+    stroke-width: 2;
+}
+
+.x-tick-value {
+    font-size: 18px;
+    fill: black;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.y-tick-value {
+    font-size: 20px;
+    fill: black;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.bar {
+    fill: rgb(49, 115, 180);
+    width: 50;
+}
+
+.bar-value {
+    font-size: 20px;
+    fill: white;
+    text-anchor: middle;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+.legend-element {
+    width: 20; 
+    height: 20;
+    stroke:black; 
+    stroke-width:2;
+}
