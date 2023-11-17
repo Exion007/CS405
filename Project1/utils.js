@@ -162,19 +162,18 @@ function getChatGPTModelViewMatrix() {
  */
 
 function getModelViewMatrix() {
-    // Convert angles from degrees to radians
+    // Converting angles from degrees to radians
     const radianX = 30 * Math.PI / 180;
     const radianY = 45 * Math.PI / 180;
     const radianZ = 60 * Math.PI / 180;
 
-    // Create transformation matrices
+    // Creating transformation matrices
     const scaleMatrix = createScaleMatrix(0.5, 0.5, 1);
     const rotationMatrixX = createRotationMatrix_X(radianX);
     const rotationMatrixY = createRotationMatrix_Y(radianY);
     const rotationMatrixZ = createRotationMatrix_Z(radianZ);
     const translationMatrix = createTranslationMatrix(0.3, -0.25, 0);
 
-    // Combine transformations in the order: scale, rotateX, rotateY, rotateZ, translate
     return multiplyMatrices(
         multiplyMatrices(
             multiplyMatrices(
